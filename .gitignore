@@ -1,0 +1,5 @@
+#ignore Examples folder
+Examples
+
+#ignore docx files
+*.docx
