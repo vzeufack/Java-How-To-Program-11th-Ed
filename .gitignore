@@ -3,3 +3,6 @@ Examples
 
 #ignore docx files
 *.docx
+/Coding Exercises/Chapter_18/Exercise_18_20/Exercise20/target/
+/Coding Exercises/Chapter_21/target/
+/Coding Exercises/Chapter_21/nbproject/
