@@ -1,6 +1,8 @@
-package com.jhtp.chapter21.exo_21_6;
+package com.jhtp.chapter21.datastructures;
 
-import com.jhtp.chapter21.datastructures.List;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -8,30 +10,22 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author vannel
  */
 public class ListConcatenateTest {
-
+   
    public ListConcatenateTest() {
    }
-
-   @org.junit.jupiter.api.BeforeAll
-   public static void setUpClass() throws Exception {
+   
+   @BeforeEach
+   public void setUp() {
    }
-
-   @org.junit.jupiter.api.AfterAll
-   public static void tearDownClass() throws Exception {
-   }
-
-   @org.junit.jupiter.api.BeforeEach
-   public void setUp() throws Exception {
-   }
-
-   @org.junit.jupiter.api.AfterEach
-   public void tearDown() throws Exception {
+   
+   @AfterEach
+   public void tearDown() {
    }
 
    /**
     * Test of concatenate method, of class ListConcatenate.
     */
-   @org.junit.jupiter.api.Test
+   @Test
    public void testConcatenate() {
       //test two empty list
       List<Character> testCase1List1 = new List<>();
@@ -39,6 +33,7 @@ public class ListConcatenateTest {
       List<Character> testCase1ExpResult = new List<>();
       ListConcatenate.concatenate(testCase1List1, testCase1List2);
       assertEquals(testCase1ExpResult, testCase1List1);
+      
       
       //test with list1 empty
       List<Character> testCase2List1 = new List<>();

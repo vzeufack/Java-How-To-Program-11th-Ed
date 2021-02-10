@@ -59,7 +59,7 @@ public class List<E> {
    public List(String listName) {
       name = listName;
       firstNode = lastNode = null;
-   } 
+   }
    
    //first node accessor
    public ListNode<E> getFirstNode(){
