@@ -66,9 +66,17 @@ public class List<E> {
       return firstNode;
    }
    
+   public void setFirstNode(ListNode<E> newFirstNode){
+      this.firstNode = newFirstNode;
+   }
+   
    //last node accessor
    public ListNode<E> getLastNode(){
       return lastNode;
+   }
+   
+   public void setLastNode(ListNode<E> newLastNode){
+      this.lastNode = newLastNode;
    }
 
    // insert item at front of List
