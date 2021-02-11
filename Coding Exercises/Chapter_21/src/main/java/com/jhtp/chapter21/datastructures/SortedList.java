@@ -34,4 +34,23 @@ public class SortedList extends List{
          }
       }
    }
+   
+   /**
+    * Merges the given list into this list.
+    * @param list:SortedList
+    */
+   public void merge(SortedList list){
+      if (!list.isEmpty()){
+         if (isEmpty()){
+            this.setFirstNode(list.getFirstNode());
+         }
+         else{
+            ListNode<Integer> current = list.getFirstNode();
+            while (current != null){
+               insert(current.getData());
+               current = current.nextNode;
+            }
+         }
+      }
+   }
 }

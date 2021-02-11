@@ -19,31 +19,103 @@ public class SortedListTest {
    }
 
    @Test
-   public void testInsert() {
-      //insert into empty list
-      SortedList testCase1List = new SortedList();
-      testCase1List.insert(7);
+   public void testInsertIntoEmtpyList() {
+      SortedList list = new SortedList();
+      list.insert(7);
       
-      List<Integer> testCase1ExpResult = new List<>();
-      testCase1ExpResult.insertAtBack(7);
+      List<Integer> expResult = new List<>();
+      expResult.insertAtBack(7);
       
-      assertTrue(testCase1ExpResult.equals(testCase1List));
+      assertTrue(expResult.equals(list));      
+   }
+   
+   @Test
+   public void testInsertIntoNonEmtpyList(){
+      SortedList list = new SortedList ();
+      list.insert(7);
+      list.insert(-1);
+      list.insert(10);
+      list.insert(5);
       
-      //insert into non-empty list
-      SortedList testCase2List = new SortedList ();
-      testCase2List.insert(7);
-      testCase2List.insert(-1);
-      testCase2List.insert(10);
-      testCase2List.insert(5);
-      testCase2List.print();
+      List<Integer> expResult = new List<>();
+      expResult.insertAtBack(-1);
+      expResult.insertAtBack(5);
+      expResult.insertAtBack(7);
+      expResult.insertAtBack(10);
       
-      List<Integer> testCase2ExpResult = new List<>();
-      testCase2ExpResult.insertAtBack(-1);
-      testCase2ExpResult.insertAtBack(5);
-      testCase2ExpResult.insertAtBack(7);
-      testCase2ExpResult.insertAtBack(10);
-      testCase2ExpResult.print();
+      assertTrue(expResult.equals(list));
+   }
+   
+   @Test
+   public void testMergeEmptyLists(){
+      SortedList list1 = new SortedList();
+      SortedList list2 = new SortedList();
+      list1.merge(list2);
+      List expResult = new List();
+      assertTrue(expResult.equals(list1));
+   }
+   
+   @Test
+   public void testMergeNonEmptyAndEmptyLists(){
+      SortedList list1 = new SortedList();
+      list1.insert(2);
+      list1.insert(1);
+      list1.insert(3);
       
-      assertTrue(testCase2List.equals(testCase2ExpResult));
+      SortedList list2 = new SortedList();
+      
+      list1.merge(list2);
+      
+      List expResult = new List();
+      expResult.insertAtBack(1);
+      expResult.insertAtBack(2);
+      expResult.insertAtBack(3);
+      
+      assertTrue(expResult.equals(list1));
+   }
+   
+   @Test
+   public void testMergeEmptyAndNonEmptyLists(){
+      SortedList list1 = new SortedList();
+      SortedList list2 = new SortedList();
+      list2.insert(2);
+      list2.insert(1);
+      list2.insert(3);
+      
+      list1.merge(list2);
+      
+      List expResult = new List();
+      expResult.insertAtBack(1);
+      expResult.insertAtBack(2);
+      expResult.insertAtBack(3);
+      
+      assertTrue(expResult.equals(list1));
+   }
+   
+   @Test
+   public void testMergeNonEmptyLists(){
+      SortedList list1 = new SortedList();
+      list1.insert(2);
+      list1.insert(1);
+      list1.insert(3);
+      
+      SortedList list2 = new SortedList();
+      list2.insert(6);
+      list2.insert(5);
+      list2.insert(4);
+      list2.insert(7);
+      
+      list1.merge(list2);
+      
+      List expResult = new List();
+      expResult.insertAtBack(1);
+      expResult.insertAtBack(2);
+      expResult.insertAtBack(3);
+      expResult.insertAtBack(4);
+      expResult.insertAtBack(5);
+      expResult.insertAtBack(6);
+      expResult.insertAtBack(7);
+      
+      assertTrue(expResult.equals(list1));
    }
 }
