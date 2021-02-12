@@ -181,4 +181,24 @@ public class List<E> {
          return this.firstNode.equals(list.firstNode);
       }
    }
+   
+   /**
+    * Reverses a given list.
+    * @param list: List
+    *    The list to reverse.
+    * @return The reversed list.
+    */
+   public static List reverseCopy(List list){
+      List reversedCopy = new List();
+      
+      if (list.isEmpty())
+         return reversedCopy;
+      
+      ListNode current = list.getFirstNode();
+      while(current != null){
+         reversedCopy.insertAtFront(current.getData());
+         current = current.nextNode;
+      }
+      return reversedCopy;
+   }
 }
