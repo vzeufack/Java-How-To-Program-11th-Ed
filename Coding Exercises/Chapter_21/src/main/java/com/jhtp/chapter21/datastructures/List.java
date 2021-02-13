@@ -35,9 +35,10 @@ class ListNode<E> {
       ListNode<E> current2 = node;
       
       while (current1 != null && current2 != null){
-         if (current1.getData() != current2.getData()){
+         if (!current1.getData().toString().equals(current2.getData().toString())){
+            System.out.printf("%s != %s%n", current1.getData(), current2.getData());
             return false;
-         }
+         }         
          current1 = current1.nextNode;
          current2 = current2.nextNode;
       }
