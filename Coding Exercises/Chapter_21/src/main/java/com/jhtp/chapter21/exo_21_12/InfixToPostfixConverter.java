@@ -31,34 +31,38 @@ public class InfixToPostfixConverter {
       while (!stack.isEmpty() && i < infixCopy.length()){
          Character currentChar = infixCopy.charAt(i);
 
-         if (Character.isDigit(currentChar))
+         if (Character.isDigit(currentChar)){  
             postfix.append(currentChar);
-         
-         if (currentChar.compareTo('(') == 0)
+            while (i+1 < infixCopy.length() && Character.isDigit(infixCopy.charAt(i+1)))
+               postfix.append(infixCopy.charAt(++i));
+            postfix.append(" ");
+         }         
+         else if (currentChar.compareTo('(') == 0){
             stack.push('(');
-         
-         if (isOperator(currentChar)){
+         }
+         else if (isOperator(currentChar)){
             topCharInStack = stack.peek();
 
             while (isOperator(topCharInStack) && precedence(topCharInStack, currentChar) >= 0){
-               postfix.append(stack.pop());
+               postfix.append(stack.pop() + " ");
                topCharInStack = stack.peek();
             }
             stack.push(currentChar);
          }
-
-         if (currentChar.compareTo(')') == 0){
+         else if (currentChar.compareTo(')') == 0){
             topCharInStack = stack.peek();
             while (isOperator(topCharInStack)){
-               postfix.append(stack.pop());
+               postfix.append(stack.pop() + " ");
                topCharInStack = stack.peek();
             }
             if (topCharInStack.compareTo('(') == 0)
                stack.pop();
          }
+         else{}
          i++;
       }
-
+      
+      postfix.setLength(postfix.length() - 1);
       return postfix;
    }
 
