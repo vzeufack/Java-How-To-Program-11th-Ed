@@ -3,6 +3,7 @@ package com.jhtp.chapter21.exo_21_12;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Hashtable;
 
 import com.jhtp.chapter21.datastructures.Stack;
@@ -12,10 +13,28 @@ import com.jhtp.chapter21.datastructures.Stack;
  * Converts infix notation to postix notation
  */
 public class InfixToPostfixConverter {
+   private static Character[] validOperators = {'+', '-', '*', '/', '^', '%'};
+
    public static void main(String[] args) {
-      StringBuffer infix = new StringBuffer("3+4/2*3");
-      StringBuffer postfix = convertToPostfix(infix);
-      System.out.printf("Infix: %s%nPostfix: %s", infix, postfix);      
+      Scanner scanner = new Scanner(System.in);
+      StringBuffer infix = new StringBuffer();
+      String continueAnswer;
+      System.out.println("Welcome to the infix to postfix converter!");
+      System.out.printf("Note: a valid expression consists of integers and operators %s%n", Arrays.asList(validOperators));
+      System.out.println("Example: 5 + 6 - 28 / 7");
+    
+      do{
+         System.out.print("\nEnter an expression > ");
+         infix.delete(0, infix.length());
+         infix.append(scanner.nextLine());
+         System.out.printf("Postix = %s%n", convertToPostfix(infix));
+         do{
+            System.out.print("Would you like to convert another expression? (y/n) > ");
+            continueAnswer = scanner.nextLine();
+         }while(!continueAnswer.equalsIgnoreCase("y") && !continueAnswer.equalsIgnoreCase("n"));
+      }while (continueAnswer.equalsIgnoreCase("y"));
+
+      scanner.close();     
    }
 
    public static StringBuffer convertToPostfix (StringBuffer infix){
@@ -62,12 +81,12 @@ public class InfixToPostfixConverter {
          i++;
       }
       
-      postfix.setLength(postfix.length() - 1);
+      if (postfix.length() >= 1)
+         postfix.setLength(postfix.length() - 1);
       return postfix;
    }
 
    private static boolean isOperator(Character c){
-      Character[] validOperators = {'+', '-', '*', '/', '^', '%'};
       List<Character> validOperatorsList = Arrays.asList(validOperators);
       return validOperatorsList.contains(c);
    }
