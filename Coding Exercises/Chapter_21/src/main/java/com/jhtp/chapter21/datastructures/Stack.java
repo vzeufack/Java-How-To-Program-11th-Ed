@@ -10,6 +10,11 @@ public class Stack<E> {
 
    // add object to stack
    public void push(E object) {stackList.insertAtFront(object);}
+   
+   //returns top of stack
+   public E peek() throws NoSuchElementException{
+      return stackList.getFirstNode().getData();
+   }
 
    // remove object from stack
    public E pop() throws NoSuchElementException {
