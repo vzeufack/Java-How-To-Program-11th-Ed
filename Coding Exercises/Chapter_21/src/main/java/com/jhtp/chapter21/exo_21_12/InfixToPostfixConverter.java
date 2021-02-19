@@ -86,7 +86,7 @@ public class InfixToPostfixConverter {
       return postfix;
    }
 
-   private static boolean isOperator(Character c){
+   public static boolean isOperator(Character c){
       List<Character> validOperatorsList = Arrays.asList(validOperators);
       return validOperatorsList.contains(c);
    }
