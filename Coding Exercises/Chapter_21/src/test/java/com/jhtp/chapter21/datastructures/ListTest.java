@@ -1,7 +1,5 @@
 package com.jhtp.chapter21.datastructures;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,18 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author vannel
  */
 public class ListTest {
-   
-   public ListTest() {
-   }
-   
-   @BeforeEach
-   public void setUp() {
-   }
-   
-   @AfterEach
-   public void tearDown() {
-   }
-
    /**
     * Test of reverseCopy of empty list.
     */
@@ -46,5 +32,18 @@ public class ListTest {
          expResult.insertAtBack(i);
       
       assertTrue(expResult.equals(reversedCopy));
+   }
+
+   @Test
+   public void testSize(){
+      List<Integer> list = new List<>();
+      assertEquals(0, list.size());
+
+      for (int i = 0; i < 10; i++)
+         list.insertAtBack(i);
+      assertEquals(10, list.size());
+
+      list.removeFromBack();
+      assertEquals(9, list.size());
    }
 }

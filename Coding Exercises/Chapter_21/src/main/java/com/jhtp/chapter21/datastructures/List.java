@@ -202,4 +202,20 @@ public class List<E> {
       }
       return reversedCopy;
    }
+   
+   //determines the number of items of a list
+   public int size(){      
+      if (isEmpty()){
+         return 0;
+      }
+      else{
+         int numberOfItems = 0;
+         ListNode<E> current = getFirstNode();
+         while(current != null){
+            numberOfItems++;
+            current = current.nextNode;
+         }
+         return numberOfItems;
+      }
+   }
 }
