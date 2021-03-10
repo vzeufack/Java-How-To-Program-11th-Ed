@@ -167,6 +167,23 @@ public class List<E> {
 
       System.out.println();
    } 
+
+   @Override
+   public String toString(){
+      String result = "";
+
+      if (isEmpty()){
+         return result;
+      }
+
+      ListNode<E> current = firstNode;
+      while (current != null) {
+         result += String.format("%s ", current.data);
+         current = current.nextNode;
+      }
+
+      return result;
+   }
    
    @Override
    public boolean equals(Object obj){
