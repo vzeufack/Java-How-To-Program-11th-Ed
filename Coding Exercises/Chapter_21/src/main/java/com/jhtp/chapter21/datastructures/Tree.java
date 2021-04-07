@@ -101,4 +101,20 @@ public class Tree<E extends Comparable<E>> {
       postorderHelper(node.rightNode); // traverse right subtree
       System.out.printf("%s", node.dataList); // output node data
    } 
+
+   //begin depth computation
+   public int getDepth(){
+      return getDepthRecursively(root);
+   }
+   
+   //recursevely computes tree's depth
+   private int getDepthRecursively(TreeNode<E> node){
+      if (node == null)
+         return -1;
+      else{
+         int leftTreeHeight = 1 + getDepthRecursively(node.leftNode);
+         int rightTreeHeight = 1 + getDepthRecursively(node.rightNode);
+         return Math.max(leftTreeHeight, rightTreeHeight);
+      }
+   }
 }
