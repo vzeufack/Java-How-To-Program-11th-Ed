@@ -22,7 +22,7 @@ public class DuplicateElimination{
          System.out.print("Enter a first name or 0 (zero) to stop > ");
          firstName = scan.next();
          if(!firstName.equals("0"))
- 	    firstNames.add(firstName.toUpperCase());
+ 	         firstNames.add(firstName.toUpperCase());
       }while(!firstName.equals("0")); 
       
       System.out.println(firstNames);

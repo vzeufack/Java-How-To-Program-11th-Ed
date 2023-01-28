@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<transactions>
+    <transaction>
+        <accountNumber>100</accountNumber>
+        <amount>27.14</amount>
+    </transaction>
+    <transaction>
+        <accountNumber>300</accountNumber>
+        <amount>62.11</amount>
+    </transaction>
+    <transaction>
+        <accountNumber>400</accountNumber>
+        <amount>100.56</amount>
+    </transaction>
+    <transaction>
+        <accountNumber>900</accountNumber>
+        <amount>82.17</amount>
+    </transaction>
+    <transaction>
+        <accountNumber>300</accountNumber>
+        <amount>83.89</amount>
+    </transaction>
+    <transaction>
+        <accountNumber>700</accountNumber>
+        <amount>80.78</amount>
+    </transaction>
+    <transaction>
+        <accountNumber>700</accountNumber>
+        <amount>1.53</amount>
+    </transaction>
+</transactions>

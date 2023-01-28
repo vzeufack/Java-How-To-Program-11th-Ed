@@ -1,6 +1,7 @@
 import java.util.LinkedList;
 import java.security.SecureRandom;
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
   * OrderedLinkedList.java by Vannel 2/3/2021
@@ -16,42 +17,14 @@ public class OrderedLinkedList{
          data[i] = generator.nextInt(101);
       }
       
-      LinkedList<Integer> sortedList = buildSortedLinkedList(data);
+      LinkedList<Integer> sortedList = new LinkedList<>(Arrays.asList(data));
+      Collections.sort(sortedList);
       
       System.out.printf("Original List: %s%n", Arrays.asList(data));
       System.out.printf("Sorted List: %s%n", sortedList);
       System.out.printf("Sum = %d%n", sum(sortedList));
       System.out.printf("Average = %f%n", average(sortedList));
    }
-   
-   /**
-     * Inserts elements from an Integer array into LinkedList in sorted order
-     * and returns the sorted list.
-     *
-     * @param unsortedArray: Integer[].
-     *    The array from which the elements are inserted into the LinkedList.
-     *
-     * @return sortedList: LinkedList<Integer>
-     *    The sorted linkedList of integers.
-     */
-    public static LinkedList<Integer> buildSortedLinkedList(Integer[] unsortedArray){
-       LinkedList<Integer> sortedList = new LinkedList<>();
-       
-       for (Integer element: unsortedArray){
-          if (element != null){
-             if (sortedList.size() == 0)
-                sortedList.add(element);
-             else{
-                int idx = 0;
-                while (idx < sortedList.size() && sortedList.get(idx) < element){
-                   idx++;
-                }
-                sortedList.add(idx, element);
-             }
-          }
-       }
-       return sortedList;
-    }
     
     /**
       * Sums all the elements in a LinkedList
