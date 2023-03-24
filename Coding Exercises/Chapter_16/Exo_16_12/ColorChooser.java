@@ -1,5 +1,6 @@
-import java.awt.Color;
+import javafx.scene.paint.Color; 
 import java.util.HashMap;
+import java.util.Set;
 
 /**
   ColorChooser.java by Vannel 2/2/2020
@@ -14,19 +15,19 @@ public class ColorChooser{
     public ColorChooser(){
        colorMap = new HashMap<>();
        
-       colorMap.put("black", Color.BLACK);
-       colorMap.put("blue", Color.BLUE);
-       colorMap.put("cyan", Color.CYAN);
-       colorMap.put("darkgray", Color.DARK_GRAY);
-       colorMap.put("gray", Color.GRAY);
-       colorMap.put("green", Color.GREEN);
-       colorMap.put("lightgray", Color.LIGHT_GRAY);
-       colorMap.put("magenta", Color.MAGENTA);
-       colorMap.put("orange", Color.ORANGE);
-       colorMap.put("pink", Color.PINK);
-       colorMap.put("red", Color.RED);
-       colorMap.put("white", Color.WHITE);
-       colorMap.put("yellow", Color.YELLOW);
+       colorMap.put("Black", Color.BLACK);
+       colorMap.put("Blue", Color.BLUE);
+       colorMap.put("Cyan", Color.CYAN);
+       colorMap.put("Dark Gray", Color.DARKGRAY);
+       colorMap.put("Gray", Color.GRAY);
+       colorMap.put("Green", Color.GREEN);
+       colorMap.put("Light Gray", Color.LIGHTGRAY);
+       colorMap.put("Magenta", Color.MAGENTA);
+       colorMap.put("Orange", Color.ORANGE);
+       colorMap.put("Pink", Color.PINK);
+       colorMap.put("Red", Color.RED);
+       colorMap.put("White", Color.WHITE);
+       colorMap.put("Yellow", Color.YELLOW);
     }
     
     /**
@@ -37,6 +38,10 @@ public class ColorChooser{
       * @return color: java.awt.Color
       */
      public Color getColor(String colorName){
-        return colorMap.get(colorName.toLowerCase());
+        return colorMap.get(colorName);
+     }
+     
+     public Set getColorNames(){
+        return colorMap.keySet();
      } 
 }
