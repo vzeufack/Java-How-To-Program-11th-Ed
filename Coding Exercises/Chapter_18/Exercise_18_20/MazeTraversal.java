@@ -27,7 +27,7 @@ public class MazeTraversal {
         print(maze);
 
         if((currentPosition[0] == 0 || currentPosition[0] == maze.length-1 || currentPosition[1] == 0 || currentPosition[1] == maze[0].length-1) &&
-                (currentPosition[0] != entryPoint[0] && currentPosition[1] != entryPoint[1]))
+                (currentPosition[0] != entryPoint[0] || currentPosition[1] != entryPoint[1]))
             return currentPosition;
 
         int[] downPos = {currentPosition[0] - 1, currentPosition[1]};
