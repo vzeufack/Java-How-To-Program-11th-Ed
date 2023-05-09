@@ -1,21 +1,25 @@
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Arrays;
 import java.util.List;
 
 public class MazeGenerator {
+  private static SecureRandom random = new SecureRandom();
   public static void main(String[] args) {
     char[][] maze = new char[12][12];
     int[][] entryAndExit = generate(maze);
-    System.out.printf("Entry point: %d %d\n Exit: %d %d\n", entryAndExit[0][0], entryAndExit[0][1], entryAndExit[1][0], entryAndExit[1][1]);
+    System.out.printf("Entry point: %d %d\nExit: %d %d\n", entryAndExit[0][0], entryAndExit[0][1], entryAndExit[1][0], entryAndExit[1][1]);
     print(maze);
   }
 
   public static int[][] generate(char[][] maze){
-    int[] entry = {5, 0};
-    maze[4][0] = '#';
-    maze[6][0] = '#';
+    int[] entry = getEntryPoint(maze);
     int[] exit = createPathToExit(maze, entry, entry);
+    setSurroundingWall(maze);
+    fillBlanks(maze);
+
+    System.out.printf("Entry: %d %d | Exit: %d %d\n", entry[0], entry[1], exit[0], exit[1]);
     int[][] entryAndExit = new int[2][2];
     entryAndExit[0] = entry;
     entryAndExit[1] = exit;
@@ -83,6 +87,59 @@ public class MazeGenerator {
     else {
       maze[currentPosition[0]][currentPosition[1]] = '\u0000';
       return null;
+    }
+  }
+
+  private static int[] getEntryPoint(char[][] maze){
+    int numOfRows = maze.length;
+    int numOfCols = maze[0].length;
+
+    boolean coin = random.nextBoolean();
+    int row, col;
+    if(coin){
+      row = random.nextInt(numOfRows-2) + 1;
+      col = random.nextBoolean()? 0 : numOfCols-1;
+      maze[row+1][col] = '#';
+      maze[row-1][col] = '#';
+    }
+    else{
+      row = random.nextBoolean()? 0 : numOfRows-1;
+      col = random.nextInt(numOfCols-2) + 1;
+      maze[row][col+1] = '#';
+      maze[row][col-1] = '#';
+    }
+
+    int[] result = {row, col};
+    return result;
+  }
+
+  private static void setSurroundingWall(char[][] maze){
+    int numOfRows = maze.length;
+    int numOfCols = maze[0].length;
+
+    for(int i = 0; i < numOfRows; i++){
+      if(maze[i][0] == '\u0000')
+        maze[i][0] = maze[i][0] = '#';
+
+      if(maze[i][numOfCols-1] == '\u0000')
+        maze[i][numOfCols-1] = maze[i][numOfCols-1] = '#';
+    }
+
+    for(int j = 0; j < numOfCols; j++){
+      if(maze[0][j] == '\u0000')
+        maze[0][j] = maze[0][j] = '#';
+
+      if(maze[numOfRows-1][j] == '\u0000')
+        maze[numOfRows-1][j] = maze[numOfRows-1][j] = '#';
+    }
+  }
+
+  private static void fillBlanks(char[][] maze){
+    for(int i = 1; i < maze.length-1; i++){
+      for(int j = 1; j < maze[i].length-1; j++){
+        if(maze[i][j] == '\u0000')
+          maze[i][j] = random.nextBoolean()?'.':'#';
+      }
     }
   }
 

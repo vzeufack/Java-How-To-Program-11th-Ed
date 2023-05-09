@@ -1,21 +1,12 @@
 public class MazeTraversal {
     public static void main(String[] args) {
-        char[][] maze = {{'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
-                         {'#', '.', '.', '.', '#', '.', '.', '.', '.', '.', '.', '#'},
-                         {'.', '.', '#', '.', '#', '.', '#', '#', '#', '#', '.', '#'},
-                         {'#', '#', '#', '.', '#', '.', '.', '.', '.', '#', '.', '#'},
-                         {'#', '.', '.', '.', '.', '#', '#', '#', '.', '#', '.', '.'},
-                         {'#', '#', '#', '#', '.', '#', '.', '#', '.', '#', '.', '#'},
-                         {'#', '.', '.', '#', '.', '#', '.', '#', '.', '#', '.', '#'},
-                         {'#', '#', '.', '#', '.', '#', '.', '#', '.', '#', '.', '#'},
-                         {'#', '.', '.', '.', '.', '.', '.', '.', '.', '#', '.', '#'},
-                         {'#', '#', '#', '#', '#', '#', '.', '#', '#', '#', '.', '#'},
-                         {'#', '.', '.', '.', '.', '.', '.', '#', '.', '.', '.', '#'},
-                         {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}};
+        char[][] maze = new char[10][20];
 
-        int[] entry = {2, 0};
+        int[] entry = MazeGenerator.generate(maze)[0];
+        print(maze);
         int[] result = mazeTraversal(maze, entry, entry);
         System.out.printf("Exit = [%d %d]\n", result[0], result[1]);
+        print(maze);
     }
 
     private static int[] mazeTraversal(char[][] maze, int[] entryPoint, int[] currentPosition){
@@ -24,7 +15,7 @@ public class MazeTraversal {
             return null;
 
         maze[currentPosition[0]][currentPosition[1]] = 'X';
-        print(maze);
+        //print(maze);
 
         if((currentPosition[0] == 0 || currentPosition[0] == maze.length-1 || currentPosition[1] == 0 || currentPosition[1] == maze[0].length-1) &&
                 (currentPosition[0] != entryPoint[0] || currentPosition[1] != entryPoint[1]))

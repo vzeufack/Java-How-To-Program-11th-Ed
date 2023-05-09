@@ -1,7 +1,4 @@
-#ignore Examples folder
 Examples
-
-#ignore docx files
 *.docx
 *.pptx
 /Coding Exercises/Chapter_18/Exercise_18_20/Exercise20/target/
@@ -9,3 +6,6 @@ Examples
 /Coding Exercises/Chapter_21/nbproject/
 /Coding Exercises/WelcomeSOAPClient/nbproject/private/
 /Coding Exercises/WelcomeSOAPClient/build/
+*.iml
+*.idea
+out
