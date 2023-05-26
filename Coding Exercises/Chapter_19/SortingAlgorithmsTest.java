@@ -45,4 +45,14 @@ public class SortingAlgorithmsTest {
         SortingAlgorithms.enhancedBubbleSort(array3);
         assertArrayEquals(sortedArray3, array3);
     }
+
+    @Test
+    public void quickSortTest(){
+        SortingAlgorithms.quickSort(array);
+        assertArrayEquals(sortedArray, array);
+        SortingAlgorithms.quickSort(array2);
+        assertArrayEquals(sortedArray2, array2);
+        SortingAlgorithms.quickSort(array3);
+        assertArrayEquals(sortedArray3, array3);
+    }
 }

@@ -2,7 +2,8 @@ import java.util.Arrays;
 public class SortingAlgorithms {
     public static void main(String[] args) {
         int[] array = new int[]{9, 4, 3, 1, 45, 10, 23, 100};
-        bucketSort(array);
+        quickSort(array);
+        System.out.println(Arrays.toString(array));
     }
 
     public static void bubbleSort(int[] array){
@@ -71,5 +72,66 @@ public class SortingAlgorithms {
             Arrays.fill(buckets[i], -1);
         }
         Arrays.fill(firstAvailableIndexByBucket, 0);
+    }
+
+    public static void quickSort(int[] array){
+        quickSortHelper(array, 0, array.length-1);
+    }
+
+    private static void quickSortHelper(int[] array, int l, int r){
+        if(l < r){
+            int finalPosition = placeFirstElementAtRightPosition(array, l, r);
+            quickSortHelper(array, l, finalPosition-1);
+            quickSortHelper(array, finalPosition+1, r);
+        }
+    }
+
+    private static int placeFirstElementAtRightPosition(int[] array, int l, int r){
+        int pivot = array[l];
+        int i = l;
+        int j = r;
+        boolean fromRight = true;
+        boolean isAtRightPosition = false;
+
+        while(!isAtRightPosition){
+            if(fromRight) {
+                while (j > i && array[j] >= pivot) {
+                    j--;
+                }
+
+                if(j >= l && array[j] < pivot) {
+                    swap(array, i, j);
+                    i = j;
+                    j = l;
+                    fromRight = !fromRight;
+                }
+                else{
+                    isAtRightPosition = true;
+                }
+            }
+            else{
+                while (j < i && array[j] <= pivot) {
+                    j++;
+                }
+
+                if(j <= r && array[j] > pivot) {
+                    swap(array, i, j);
+                    i = j;
+                    j = r;
+                    fromRight = !fromRight;
+                }
+                else{
+                    isAtRightPosition = true;
+                }
+            }
+        }
+
+        return i;
+    }
+
+    private static void swap(int[] array, int i, int j){
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
 }
