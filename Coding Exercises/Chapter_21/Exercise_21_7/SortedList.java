@@ -54,7 +54,6 @@ public class SortedList<E extends Comparable> {
             firstNode = new ListNode<E>(insertItem, firstNode);
         }
         else {
-
             ListNode<E> current = firstNode;
             while (current.nextNode != null && current.nextNode.data.compareTo(newNode.data) <= 0) {
                 current = current.nextNode;
@@ -63,72 +62,6 @@ public class SortedList<E extends Comparable> {
             current.nextNode = newNode;
             newNode.nextNode = next;
         }
-    }
-
-    // insert item at front of List
-    public void insertAtFront(E insertItem) {
-        if (isEmpty()) { // firstNode and lastNode refer to same object
-            firstNode = lastNode = new ListNode<E>(insertItem);
-        }
-        else { // firstNode refers to new node
-            firstNode = new ListNode<E>(insertItem, firstNode);
-        }
-    }
-
-    // insert item at end of List
-    public void insertAtBack(E insertItem) {
-        if (isEmpty()) { // firstNode and lastNode refer to same object
-            firstNode = lastNode = new ListNode<E>(insertItem);
-        }
-        else { // lastNode's nextNode refers to new node
-            lastNode = lastNode.nextNode = new ListNode<E>(insertItem);
-        }
-    }
-
-    // remove first node from List
-    public E removeFromFront() throws NoSuchElementException {
-        if (isEmpty()) { // throw exception if List is empty
-            throw new NoSuchElementException(name + " is empty");
-        }
-
-        E removedItem = firstNode.data; // retrieve data being removed
-
-        // update references firstNode and lastNode
-        if (firstNode == lastNode) {
-            firstNode = lastNode = null;
-        }
-        else {
-            firstNode = firstNode.nextNode;
-        }
-
-        return removedItem; // return removed node data
-    }
-
-    // remove last node from List
-    public E removeFromBack() throws NoSuchElementException {
-        if (isEmpty()) { // throw exception if List is empty
-            throw new NoSuchElementException(name + " is empty");
-        }
-
-        E removedItem = lastNode.data; // retrieve data being removed
-
-        // update references firstNode and lastNode
-        if (firstNode == lastNode) {
-            firstNode = lastNode = null;
-        }
-        else { // locate new last node
-            ListNode<E> current = firstNode;
-
-            // loop while current node does not refer to lastNode
-            while (current.nextNode != lastNode) {
-                current = current.nextNode;
-            }
-
-            lastNode = current; // current is new lastNode
-            current.nextNode = null;
-        }
-
-        return removedItem; // return removed node data
     }
 
     // determine whether list is empty; returns true if so
@@ -151,6 +84,28 @@ public class SortedList<E extends Comparable> {
         }
 
         System.out.println();
+    }
+
+    public void merge(SortedList<E> list){
+        ListNode<E> current = list.firstNode;
+        while(current != null){
+            this.insert(current.data);
+            current = current.nextNode;
+        }
+    }
+
+    public boolean isEqual(SortedList<E> list){
+        if(isEmpty() && list.isEmpty())
+            return true;
+
+        ListNode<E> current1 = this.firstNode;
+        ListNode<E> current2 = list.firstNode;
+        while(current1 != null && current2 != null && current1.data.compareTo(current2.data) == 0) {
+            current1 = current1.nextNode;
+            current2 = current2.nextNode;
+        }
+
+        return current1 == current2;
     }
 }
 
