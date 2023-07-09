@@ -141,6 +141,14 @@ public class List<E> {
 
         return reversedList;
     }
+
+    public E getTopElement(){
+        if (isEmpty()) {
+            throw new NoSuchElementException(name + " is empty");
+        }
+
+        return firstNode.data;
+    }
 }
 
 

@@ -16,7 +16,11 @@ public class Stack<E> {
    // remove object from stack
    public E pop() throws NoSuchElementException {
       return stackList.removeFromFront(); 
-   } 
+   }
+
+   public E peek() throws NoSuchElementException{
+      return stackList.getTopElement();
+   }
 
    // determine if stack is empty
    public boolean isEmpty() {return stackList.isEmpty();}
