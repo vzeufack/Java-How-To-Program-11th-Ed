@@ -9,22 +9,22 @@ public class PostfixEvaluator {
         System.out.println(a);
     }
     public static int evaluatePostfixExpression(StringBuffer postfix){
-        postfix.append(")");
+        postfix.append(" )");
+        String[] tokens = postfix.toString().split(" ");
+
         int i = 0;
-        Character current = postfix.charAt(i);
+        String current = tokens[i];
         Stack<Integer> stack = new Stack<>();
 
-        while(!current.equals(')')){
-            if(Character.isDigit(current)){
+        while(!current.equals(")")){
+            if(current.matches("-?\\d+"))
                 stack.push(Integer.parseInt(current + ""));
-            }
-            else if(InfixToPostfixConverter.isOperator(current)){
-                int temp = calculate(stack.pop(), stack.pop(), current);
+            else{
+                int temp = calculate(stack.pop(), stack.pop(), current.charAt(0));
                 stack.push(temp);
             }
-            else{}
 
-            current = postfix.charAt(++i);
+            current = tokens[++i];
         }
 
         return stack.pop();
