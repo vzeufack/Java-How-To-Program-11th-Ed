@@ -41,7 +41,7 @@ public class InfixToPostfixConverter {
         return postfix.substring(0, postfix.length()-1);
     }
 
-    private static boolean isOperator(Character c){
+    public static boolean isOperator(Character c){
         String operators = "+-*/^%";
         return operators.contains(c + "");
     }
