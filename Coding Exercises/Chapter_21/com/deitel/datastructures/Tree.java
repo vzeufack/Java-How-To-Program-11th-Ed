@@ -42,7 +42,15 @@ class TreeNode<E extends Comparable<E>> {
       else{
         this.count = this.count + 1;
       }
-   } 
+   }
+   public static int getDepth(TreeNode root){
+      if(root == null)
+         return 0;
+
+      int leftSubTreeDepth = 1 + getDepth(root.leftNode);
+      int rightSubTreeDepth = 1 + getDepth(root.rightNode);
+      return Math.max(leftSubTreeDepth, rightSubTreeDepth);
+   }
 } 
 
 // class Tree definition
@@ -105,7 +113,11 @@ public class Tree<E extends Comparable<E>> {
       postorderHelper(node.rightNode); // traverse right subtree
       for(int i = 0; i < node.count; i++)
         System.out.printf("%s ", node.data); // output node data
-   } 
+   }
+
+   public int getDepth(){
+      return TreeNode.getDepth(root);
+   }
 }
 
 
