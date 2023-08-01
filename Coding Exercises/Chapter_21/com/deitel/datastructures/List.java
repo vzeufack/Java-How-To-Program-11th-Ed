@@ -25,6 +25,13 @@ class ListNode<E> {
 
     // return reference to next node in list
     ListNode<E> getNext() {return nextNode;}
+
+    public static void printListBackward(ListNode root){
+        if (root != null){
+            printListBackward(root.nextNode);
+            System.out.printf("%s ", root.data);
+        }
+    }
 }
 
 // class List definition
@@ -148,6 +155,18 @@ public class List<E> {
         }
 
         return firstNode.data;
+    }
+
+    public void printListBackward(){
+        if (isEmpty()) {
+            System.out.printf("Empty %s%n", name);
+            return;
+        }
+
+        System.out.printf("The reversed %s is: ", name);
+
+        ListNode.printListBackward(firstNode);
+        System.out.println();
     }
 }
 
