@@ -5,7 +5,7 @@ package com.deitel.datastructures;
 import java.util.NoSuchElementException;
 
 // class to represent one node in a list
-class ListNode<E> {
+class ListNode<E extends Comparable<E>> {
     // package access members; List can access these directly
     E data; // data for this node
     ListNode<E> nextNode; // reference to the next node in the list
@@ -26,16 +26,16 @@ class ListNode<E> {
     // return reference to next node in list
     ListNode<E> getNext() {return nextNode;}
 
-    public static void printListBackward(ListNode root){
-        if (root != null){
-            printListBackward(root.nextNode);
-            System.out.printf("%s ", root.data);
+    public static void printListBackward(ListNode node){
+        if (node != null){
+            printListBackward(node.nextNode);
+            System.out.printf("%s ", node.data);
         }
     }
 }
 
 // class List definition
-public class List<E> {
+public class List<E extends Comparable<E>> {
     private ListNode<E> firstNode;
     private ListNode<E> lastNode;
     private String name; // string like "list" used in printing
@@ -167,6 +167,20 @@ public class List<E> {
 
         ListNode.printListBackward(firstNode);
         System.out.println();
+    }
+
+    public E search(E key){
+        return searchHelper(firstNode, key);
+    }
+
+    private E searchHelper(ListNode<E> node, E key){
+        if(node == null)
+            return null;
+
+        if (node.data.compareTo(key) == 0)
+            return node.data;
+
+        return searchHelper(node.nextNode, key);
     }
 }
 

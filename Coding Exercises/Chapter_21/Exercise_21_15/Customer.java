@@ -1,6 +1,6 @@
 package Exercise_21_15;
 
-public class Customer {
+public class Customer implements Comparable<Customer> {
     int id;
     int arrivalTime;
     int serviceTime;
@@ -29,5 +29,8 @@ public class Customer {
         return "Customer " + this.id;
     }
 
-
+    @Override
+    public int compareTo(Customer customer) {
+        return Integer.compare(this.id, customer.id);
+    }
 }

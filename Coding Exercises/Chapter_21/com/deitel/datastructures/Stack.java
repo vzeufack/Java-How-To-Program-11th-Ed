@@ -4,7 +4,7 @@ package com.deitel.datastructures;
 
 import java.util.NoSuchElementException;
 
-public class Stack<E> {
+public class Stack<E extends Comparable<E>> {
    private List<E> stackList;
 
    // constructor

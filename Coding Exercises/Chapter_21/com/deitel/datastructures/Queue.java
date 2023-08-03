@@ -4,7 +4,7 @@ package com.deitel.datastructures;
 
 import java.util.NoSuchElementException;
 
-public class Queue<E> {
+public class Queue<E extends Comparable<E>> {
    private List<E> queueList;
 
    // constructor
