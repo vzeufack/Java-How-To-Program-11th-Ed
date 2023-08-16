@@ -115,8 +115,137 @@ public class Tree<E extends Comparable<E>> {
         System.out.printf("%s ", node.data); // output node data
    }
 
+
    public int getDepth(){
       return TreeNode.getDepth(root);
+   }
+
+   public void print(){
+      if (root == null){
+         System.out.println("Tree is empty!");
+      }
+      else {
+         System.out.printf("Preorder traversal%n");
+         this.preorderTraversal();
+
+         System.out.printf("%nInorder traversal%n");
+         this.inorderTraversal();
+
+         System.out.printf("%nPostorder traversal%n");
+         this.postorderTraversal();
+      }
+   }
+
+   public void deleteNode(E valueToDelete){
+      if(root == null)
+         System.out.println("Value is not in the tree!");
+      else if (root.data.compareTo(valueToDelete) == 0){
+         if(isLeaf(root))
+            root = null;
+         else if (root.leftNode != null && root.rightNode == null)
+            root = root.leftNode;
+         else if (root.leftNode == null && root.rightNode != null)
+            root = root.rightNode;
+         else{
+            TreeNode parentOfReplacementNode = getParentOfReplacementNode(root);
+            TreeNode temp = root;
+            if(parentOfReplacementNode == root){
+               root = root.leftNode;
+               root.rightNode = temp.rightNode;
+            }
+            else {
+               TreeNode replacementNode = parentOfReplacementNode.rightNode;
+               root = replacementNode;
+
+               if (isLeaf(replacementNode)) {
+                  parentOfReplacementNode.rightNode = null;
+               } else {
+                  parentOfReplacementNode.rightNode = replacementNode.leftNode;
+               }
+               replacementNode.rightNode = temp.rightNode;
+               replacementNode.leftNode = temp.leftNode;
+            }
+         }
+      }
+      else{
+         TreeNode parentOfNodeToDelete = getParentOfNodeToDelete(valueToDelete, root);
+         if(parentOfNodeToDelete != null){
+            boolean isLeftChild = parentOfNodeToDelete.leftNode.data.compareTo(valueToDelete) == 0;
+            TreeNode nodeToDelete =  isLeftChild ? parentOfNodeToDelete.leftNode : parentOfNodeToDelete.rightNode;
+            if(isLeaf(nodeToDelete)){
+               if(isLeftChild)
+                  parentOfNodeToDelete.leftNode = null;
+               else
+                  parentOfNodeToDelete.rightNode = null;
+            }
+            else if (nodeToDelete.leftNode != null && nodeToDelete.rightNode == null){
+               if(isLeftChild)
+                  parentOfNodeToDelete.leftNode = nodeToDelete.leftNode;
+               else
+                  parentOfNodeToDelete.rightNode = nodeToDelete.leftNode;
+            }
+            else if (nodeToDelete.leftNode == null && nodeToDelete.rightNode != null){
+               if(isLeftChild)
+                  parentOfNodeToDelete.leftNode = nodeToDelete.rightNode;
+               else
+                  parentOfNodeToDelete.rightNode = nodeToDelete.rightNode;
+            }
+            else{
+               TreeNode parentOfReplacementNode = getParentOfReplacementNode(nodeToDelete);
+               TreeNode replacementNode = parentOfReplacementNode.rightNode;
+               TreeNode temp = nodeToDelete;
+
+               if(isLeftChild)
+                  parentOfNodeToDelete.leftNode = replacementNode;
+               else
+                  parentOfNodeToDelete.rightNode = replacementNode;
+
+               if(isLeaf(replacementNode)){
+                  parentOfReplacementNode.rightNode = null;
+               }
+               else{
+                  parentOfReplacementNode.rightNode = replacementNode.leftNode;
+               }
+               replacementNode.rightNode = temp.rightNode;
+               replacementNode.leftNode = temp.leftNode;
+            }
+         }
+         else{
+            System.out.println("Value is not in the tree!");
+         }
+      }
+   }
+
+   private TreeNode getParentOfReplacementNode(TreeNode nodeToDelete){
+      TreeNode current = nodeToDelete.leftNode;
+      TreeNode parent = nodeToDelete;
+
+      while(current.rightNode != null){
+         parent = current;
+         current = current.rightNode;
+      }
+
+      return parent;
+   }
+
+   private TreeNode getParentOfNodeToDelete(E key, TreeNode parent){
+      if (parent == null)
+         return null;
+
+      if (parent.leftNode != null && parent.leftNode.data.compareTo(key) == 0)
+         return parent;
+
+      if (parent.rightNode != null && parent.rightNode.data.compareTo(key) == 0)
+         return parent;
+
+      if (parent.data.compareTo(key) > 0)
+         return getParentOfNodeToDelete(key, parent.leftNode);
+      else
+         return getParentOfNodeToDelete(key, parent.rightNode);
+   }
+
+   private boolean isLeaf(TreeNode node){
+      return node.leftNode == null && node.rightNode == null;
    }
 }
 

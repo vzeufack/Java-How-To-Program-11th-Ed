@@ -3,7 +3,7 @@ package Exercise_21_16;
 import java.security.SecureRandom;
 import com.deitel.datastructures.Tree;
 
-public class TreeTest {
+public class DuplicatesInTreeTest {
    public static void main(String[] args) {
       Tree<Integer> tree = new Tree<Integer>();
       SecureRandom randomNumber = new SecureRandom();
