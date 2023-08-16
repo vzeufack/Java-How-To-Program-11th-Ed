@@ -247,6 +247,22 @@ public class Tree<E extends Comparable<E>> {
    private boolean isLeaf(TreeNode node){
       return node.leftNode == null && node.rightNode == null;
    }
+
+   public E contains(E key){
+      return containsHelper(root, key);
+   }
+
+   private E containsHelper(TreeNode<E> root, E key){
+      if (root == null)
+         return null;
+
+      if (root.data.compareTo(key) == 0)
+         return root.data;
+      else if (root.data.compareTo(key) > 0)
+         return containsHelper(root.leftNode, key);
+      else
+         return containsHelper(root.rightNode, key);
+   }
 }
 
 
