@@ -3,7 +3,7 @@
 package com.deitel.datastructures;
 
 // class TreeNode definition
-class TreeNode<E extends Comparable<E>> {
+class TreeNode<E extends Comparable<E>> implements Comparable<TreeNode> {
    // package access members
    TreeNode<E> leftNode;
    E data; // node value
@@ -51,7 +51,12 @@ class TreeNode<E extends Comparable<E>> {
       int rightSubTreeDepth = 1 + getDepth(root.rightNode);
       return Math.max(leftSubTreeDepth, rightSubTreeDepth);
    }
-} 
+
+   @Override
+   public int compareTo(TreeNode o) {
+      return this.data.compareTo((E) o.data);
+   }
+}
 
 // class Tree definition
 public class Tree<E extends Comparable<E>> {
@@ -113,6 +118,22 @@ public class Tree<E extends Comparable<E>> {
       postorderHelper(node.rightNode); // traverse right subtree
       for(int i = 0; i < node.count; i++)
         System.out.printf("%s ", node.data); // output node data
+   }
+
+   public void levelOrderTraversal(){
+      Queue<E> queue = new Queue<>();
+      queue.enqueue((E) root);
+
+      while(!queue.isEmpty()){
+         TreeNode current = (TreeNode) queue.dequeue();
+         System.out.printf(current.data + " ");
+
+         if(current.leftNode != null)
+            queue.enqueue((E)current.leftNode);
+
+         if(current.rightNode != null)
+            queue.enqueue((E)current.rightNode);
+      }
    }
 
 
