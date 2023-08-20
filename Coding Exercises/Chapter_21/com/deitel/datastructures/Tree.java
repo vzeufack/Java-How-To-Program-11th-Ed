@@ -157,6 +157,21 @@ public class Tree<E extends Comparable<E>> {
       }
    }
 
+   public void print(int totalSpaces){
+      printHelper(root, totalSpaces);
+   }
+
+   private void printHelper(TreeNode current, int totalSpaces){
+      while(current != null){
+         printHelper(current.rightNode, totalSpaces + 5);
+         for(int i = 0; i < totalSpaces; i++)
+            System.out.print(" ");
+         System.out.println(current.data);
+         current = current.leftNode;
+         totalSpaces += 5;
+      }
+   }
+
    public void deleteNode(E valueToDelete){
       if(root == null)
          System.out.println("Value is not in the tree!");
