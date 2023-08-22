@@ -69,6 +69,39 @@ public class List<E extends Comparable<E>> {
         }
     }
 
+    public void insert(E insertItem, int index){
+        int totalElement = 0;
+        ListNode current = firstNode;
+
+        while(current != null){
+            totalElement++;
+            current = current.nextNode;
+        }
+
+        if(index < 0 || index > totalElement)
+            throw new IndexOutOfBoundsException(String.format("Index out of range [0 - %d]", totalElement));
+
+        if (isEmpty()) {
+            firstNode = lastNode = new ListNode<E>(insertItem);
+        }
+        else if (index == 0){
+            firstNode = new ListNode<E>(insertItem, firstNode);
+        }
+        else if (index == totalElement){
+            lastNode = lastNode.nextNode = new ListNode<E>(insertItem);
+        }
+        else {
+            current = firstNode;
+            for (int i = 0; i < index - 1; i++) {
+                current = current.nextNode;
+            }
+            ListNode next = current.nextNode;
+            ListNode newNode = new ListNode<E>(insertItem);
+            current.nextNode = newNode;
+            newNode.nextNode = next;
+        }
+    }
+
     // remove first node from List
     public E removeFromFront() throws NoSuchElementException {
         if (isEmpty()) { // throw exception if List is empty
@@ -113,6 +146,38 @@ public class List<E extends Comparable<E>> {
         }
 
         return removedItem; // return removed node data
+    }
+
+    public E remove(E itemToRemove) throws NoSuchElementException{
+        if (isEmpty()) {
+            throw new NoSuchElementException(name + " is empty");
+        }
+        else if (firstNode.data.compareTo(itemToRemove) == 0){
+            E removedItem = firstNode.data;
+
+            if (firstNode == lastNode) {
+                firstNode = lastNode = null;
+            }
+            else {
+                firstNode = firstNode.nextNode;
+            }
+            return removedItem;
+        }
+        else {
+            ListNode<E> current = firstNode;
+            ListNode<E> previous = null;
+            while (current != null && current.data.compareTo(itemToRemove) != 0) {
+                previous = current;
+                current = current.nextNode;
+            }
+            if (current == null)
+                throw new NoSuchElementException(String.format("%s is not in the list!", itemToRemove));
+            else{
+                E removedItem = current.data;
+                previous.nextNode = current.nextNode;
+                return removedItem;
+            }
+        }
     }
 
     // determine whether list is empty; returns true if so
