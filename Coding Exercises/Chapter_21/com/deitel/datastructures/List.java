@@ -37,7 +37,7 @@ class ListNode<E extends Comparable<E>> {
 // class List definition
 public class List<E extends Comparable<E>> {
     private ListNode<E> firstNode;
-    private ListNode<E> lastNode;
+    //private ListNode<E> lastNode;
     private String name; // string like "list" used in printing
 
     // constructor creates empty List with "list" as the name
@@ -46,13 +46,13 @@ public class List<E extends Comparable<E>> {
     // constructor creates an empty List with a name
     public List(String listName) {
         name = listName;
-        firstNode = lastNode = null;
+        firstNode = null;
     }
 
     // insert item at front of List
     public void insertAtFront(E insertItem) {
         if (isEmpty()) { // firstNode and lastNode refer to same object
-            firstNode = lastNode = new ListNode<E>(insertItem);
+            firstNode = new ListNode<E>(insertItem);
         }
         else { // firstNode refers to new node
             firstNode = new ListNode<E>(insertItem, firstNode);
@@ -62,9 +62,10 @@ public class List<E extends Comparable<E>> {
     // insert item at end of List
     public void insertAtBack(E insertItem) {
         if (isEmpty()) { // firstNode and lastNode refer to same object
-            firstNode = lastNode = new ListNode<E>(insertItem);
+            firstNode = new ListNode<E>(insertItem);
         }
         else { // lastNode's nextNode refers to new node
+            ListNode<E> lastNode = getLastNode();
             lastNode = lastNode.nextNode = new ListNode<E>(insertItem);
         }
     }
@@ -82,12 +83,13 @@ public class List<E extends Comparable<E>> {
             throw new IndexOutOfBoundsException(String.format("Index out of range [0 - %d]", totalElement));
 
         if (isEmpty()) {
-            firstNode = lastNode = new ListNode<E>(insertItem);
+            firstNode = new ListNode<E>(insertItem);
         }
         else if (index == 0){
             firstNode = new ListNode<E>(insertItem, firstNode);
         }
         else if (index == totalElement){
+            ListNode<E> lastNode = getLastNode();
             lastNode = lastNode.nextNode = new ListNode<E>(insertItem);
         }
         else {
@@ -111,8 +113,8 @@ public class List<E extends Comparable<E>> {
         E removedItem = firstNode.data; // retrieve data being removed
 
         // update references firstNode and lastNode
-        if (firstNode == lastNode) {
-            firstNode = lastNode = null;
+        if (firstNode.nextNode == null) {
+            firstNode = null;
         }
         else {
             firstNode = firstNode.nextNode;
@@ -127,6 +129,7 @@ public class List<E extends Comparable<E>> {
             throw new NoSuchElementException(name + " is empty");
         }
 
+        ListNode<E> lastNode = getLastNode();
         E removedItem = lastNode.data; // retrieve data being removed
 
         // update references firstNode and lastNode
@@ -155,8 +158,8 @@ public class List<E extends Comparable<E>> {
         else if (firstNode.data.compareTo(itemToRemove) == 0){
             E removedItem = firstNode.data;
 
-            if (firstNode == lastNode) {
-                firstNode = lastNode = null;
+            if (firstNode.nextNode == null) {
+                firstNode = null;
             }
             else {
                 firstNode = firstNode.nextNode;
@@ -246,6 +249,16 @@ public class List<E extends Comparable<E>> {
             return node.data;
 
         return searchHelper(node.nextNode, key);
+    }
+
+    private ListNode<E> getLastNode(){
+        if(isEmpty())
+            return null;
+        ListNode<E> current = firstNode;
+        while(current.nextNode != null){
+            current = current.nextNode;
+        }
+        return current;
     }
 }
 
