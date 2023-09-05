@@ -37,7 +37,6 @@ class ListNode<E extends Comparable<E>> {
 // class List definition
 public class List<E extends Comparable<E>> {
     private ListNode<E> firstNode;
-    //private ListNode<E> lastNode;
     private String name; // string like "list" used in printing
 
     // constructor creates empty List with "list" as the name

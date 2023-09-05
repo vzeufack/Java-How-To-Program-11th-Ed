@@ -65,6 +65,10 @@ public class Tree<E extends Comparable<E>> {
    // constructor initializes an empty Tree of integers
    public Tree() {root = null;}
 
+   public TreeNode<E> getRoot(){
+      return root;
+   }
+
    // insert a new node in the binary search tree
    public void insertNode(E insertValue) {
       if (root == null) {
@@ -264,7 +268,7 @@ public class Tree<E extends Comparable<E>> {
       return parent;
    }
 
-   private TreeNode getParentOfNodeToDelete(E key, TreeNode parent){
+   public TreeNode getParentOfNodeToDelete(E key, TreeNode parent){
       if (parent == null)
          return null;
 
