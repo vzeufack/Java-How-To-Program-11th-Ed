@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- PolyLineApp.fxml -->
+<!-- GUI for manipulating a Polyline, a Polygon -->
+
+<?import java.lang.Double?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Polyline?>
+
+
+<Pane fx:id="drawingPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#drawingAreaMouseDragged" prefHeight="287.0" prefWidth="493.0" stylesheets="@PolyLineApp.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PolyLineAppController">
+   <children>
+      <Polyline fx:id="polyline" fill="CHARTREUSE" smooth="false" visible="false">
+        <points>
+          <Double fx:value="-50.0" />
+          <Double fx:value="-40.0" />
+          <Double fx:value="50.0" />
+          <Double fx:value="-40.0" />
+          <Double fx:value="0.0" />
+          <Double fx:value="60.0" />
+          <Double fx:value="-50.0" />
+          <Double fx:value="-40.0" />
+        </points>
+      </Polyline>
+   </children>
+</Pane>
