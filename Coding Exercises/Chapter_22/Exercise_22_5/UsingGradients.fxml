@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UsingGradientsController">
+   <left>
+      <VBox prefHeight="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TitledPane animated="false" text="Radiant type">
+               <content>
+                  <VBox maxHeight="-Infinity" prefWidth="100.0" spacing="8.0">
+                     <children>
+                        <RadioButton fx:id="linearRadioButton" mnemonicParsing="false" onAction="#radiantRadioButtonSelected" selected="true" text="Linear">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="toggleGroup" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="radialRadioButton" mnemonicParsing="false" onAction="#radiantRadioButtonSelected" text="Radial" toggleGroup="$toggleGroup" />
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Starting color">
+               <content>
+                  <GridPane hgap="8.0" style="-fx-background-color: white;">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Red" />
+                        <Label text="Green" GridPane.rowIndex="1" />
+                        <Label text="Blue" GridPane.rowIndex="2" />
+                        <Label text="Alpha" GridPane.rowIndex="3" />
+                        <Slider fx:id="redSliderStart" max="255.0" GridPane.columnIndex="1" />
+                        <Slider fx:id="greenSliderStart" max="255.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Slider fx:id="blueSliderStart" max="255.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Slider fx:id="alphaSliderStart" blockIncrement="0.1" max="1.0" value="1.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="redTextFieldStart" prefWidth="50.0" text="0" GridPane.columnIndex="2" />
+                        <TextField fx:id="greenTextFieldStart" prefWidth="50.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="blueTextFieldStart" prefWidth="50.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="alphaTextFieldStart" prefWidth="50.0" text="1.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                     </children>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
+                  </GridPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Ending color">
+               <content>
+                  <GridPane hgap="8.0" style="-fx-background-color: white;">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Red" />
+                        <Label text="Green" GridPane.rowIndex="1" />
+                        <Label text="Blue" GridPane.rowIndex="2" />
+                        <Label text="Alpha" GridPane.rowIndex="3" />
+                        <Slider fx:id="redSliderEnd" max="255.0" GridPane.columnIndex="1" />
+                        <Slider fx:id="greenSliderEnd" max="255.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Slider fx:id="blueSliderEnd" max="255.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Slider fx:id="alphaSliderEnd" blockIncrement="0.1" max="1.0" value="1.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="redTextFieldEnd" prefWidth="50.0" text="0" GridPane.columnIndex="2" />
+                        <TextField fx:id="greenTextFieldEnd" prefWidth="50.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="blueTextFieldEnd" prefWidth="50.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="alphaTextFieldEnd" prefWidth="50.0" text="1.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                     </children>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
+                  </GridPane>
+               </content></TitledPane>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
