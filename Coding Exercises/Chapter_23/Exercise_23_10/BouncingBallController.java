@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Ellipse;
 
 public class BouncingBallController {
    @FXML private Circle c;
@@ -23,14 +24,21 @@ public class BouncingBallController {
       SecureRandom random = new SecureRandom();
       Color color = new Color(random.nextDouble(), random.nextDouble(), random.nextDouble(), random.nextDouble());
       Circle newCircle = new Circle(c.getRadius(), color);
+      Ellipse shadow = new Ellipse(50, 25);
+
       pane.getChildren().add(newCircle);
+      pane.getChildren().add(shadow);
       newCircle.setStroke(c.getStroke());
       newCircle.setStrokeWidth(c.getStrokeWidth());
       newCircle.setVisible(true);
+      shadow.setVisible(true);
       newCircle.setLayoutX(event.getSceneX());
       newCircle.setLayoutY(event.getSceneY());
-      GenerateBallTask task = new GenerateBallTask(newCircle, pane.getBoundsInLocal());
+      shadow.setLayoutX(newCircle.getLayoutX());
+      shadow.setLayoutY(400);
 
+
+      GenerateBallTask task = new GenerateBallTask(newCircle, shadow, pane.getBoundsInLocal());
       ExecutorService executorService = Executors.newFixedThreadPool(1);
       executorService.execute(task);
       executorService.shutdown();

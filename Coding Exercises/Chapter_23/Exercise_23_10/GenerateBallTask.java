@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Bounds;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Ellipse;
 import javafx.util.Duration;
 
 import java.security.SecureRandom;
@@ -12,11 +13,13 @@ import java.security.SecureRandom;
 public class GenerateBallTask extends Task {
     private SecureRandom random = new SecureRandom();
     private Circle c;
+    private Ellipse shadow;
     private Bounds bounds;
 
-    public GenerateBallTask(Circle circle, Bounds bounds) {
+    public GenerateBallTask(Circle circle, Ellipse shadow, Bounds bounds) {
         this.bounds = bounds;
         this.c = circle;
+        this.shadow = shadow;
     }
 
     private boolean hitRightOrLeftEdge(Bounds bounds) {
@@ -43,6 +46,8 @@ public class GenerateBallTask extends Task {
                             public void handle(final ActionEvent e) {
                                 c.setLayoutX(c.getLayoutX() + dx);
                                 c.setLayoutY(c.getLayoutY() + dy);
+                                shadow.setLayoutX(shadow.getLayoutX() + dx);
+
                                 if (hitRightOrLeftEdge(bounds)) {
                                     dx *= -1;
                                 }
