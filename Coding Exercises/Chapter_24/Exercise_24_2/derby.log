@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Wed Feb 14 20:44:40 EST 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-018d-aa6f-f48b-00000d90d3d0 
+on database directory C:\Users\zvane\Documents\Programmation\Java-How-To-Program-11th-Ed\Coding Exercises\Chapter_24\Exercise_24_2\books with class loader sun.misc.Launcher$AppClassLoader@610455d6 
+Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_121/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_121-b13
+user.dir=C:\Users\zvane\Documents\Programmation\Java-How-To-Program-11th-Ed\Coding Exercises\Chapter_24\Exercise_24_2
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
